@@ -1,5 +1,6 @@
 const cityId = location.href.split('=')[1];
 const midSection = document.querySelector('#mid-section');
+const cityName = document.querySelector('b');
 
 const xhr = new XMLHttpRequest();
 
@@ -13,27 +14,31 @@ xhr.open('GET', 'https://developers.zomato.com/api/v2.1/search?entity_id=' + cit
 xhr.setRequestHeader('user-key', 'c3d3366545336bba3bcec47786f44130');
 xhr.send();
 
-function restaurantsDetails() {
+function restaurantsDetails() { 
 	if (this.status === 200) {
 		const data = this.responseText;
 		const restaurants = JSON.parse(data)['restaurants'];
 
+		cityName.textContent = restaurants[0].restaurant.location.city;
+
 		for (let details of restaurants) {
 			midSection.innerHTML += `
-	        <div class="restaurants">
-	           <div class="rest-img" style="background-image: url(${details.restaurant.thumb}); background-size: 100% 100%">  
-	           </div>
-	           <div class="rest-info">
-	       	    	<p class="rest-name">${details.restaurant.name}</p>
-	            	<p class="ratings">
-		                <span>&#9733;</span>
-		                <span>${details.restaurant.user_rating.aggregate_rating}</span>
-		                <span>(${details.restaurant.user_rating.votes})</span>
-		                <span>|</span>
-		                <span>223 reviews</span>
-	            	</p>
-	           	</div>
-	        </div>
+			<a href="./restaurant.html?q=${details.restaurant.id}">
+		        <div class="restaurants">
+		           <div class="rest-img" style="background-image: url(${details.restaurant.thumb}); background-size: 100% 100%">  
+		           </div>
+		           <div class="rest-info">
+		       	    	<p class="rest-name">${details.restaurant.name}</p>
+		            	<p class="ratings">
+			                <span>&#9733;</span>
+			                <span>${details.restaurant.user_rating.aggregate_rating}</span>
+			                <span>(${details.restaurant.user_rating.votes})</span>
+			                <span>|</span>
+			                <span>223 reviews</span>
+		            	</p>
+		           	</div>
+		        </div>
+	        </a>
 	        <hr>`;
 		}
 	}

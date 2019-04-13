@@ -3,6 +3,10 @@
    padding: 0px;
 }
 
+a {
+   text-decoration: none;
+}
+
 #header {
    border: 2px solid #9b9b9b;
    box-shadow: 1px 5px 5px #9d9d9d;
@@ -208,7 +212,6 @@ hr {
 }
 
 .rating-bar{
-   height: 300px;
    margin: 20px 20px 0px 20px;
    font-family: 'Titillium Web', sans-serif;
    overflow: hidden;
@@ -220,9 +223,15 @@ hr {
    font-size: 20px;
 }
 
+.user-reviews-info {
+   width: 100%;
+   clear: both;
+   margin: auto;
+}
+
 .user-bar{
    height: 250px;
-   width: 70px;
+   width: 12%;
    float: left;
 }
 
@@ -237,7 +246,7 @@ hr {
 
 .user-information-bar{
    height: 250px;
-   width: 610px;   
+   width: 85%;   
    float: left;
    margin-left: 20px;
 }

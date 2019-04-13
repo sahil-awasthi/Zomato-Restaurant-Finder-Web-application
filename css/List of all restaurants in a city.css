@@ -3,6 +3,11 @@
    padding: 0px;
 }
 
+a {
+   text-decoration: none;
+   color: black;
+}
+
 #header {
    border: 2px solid #9b9b9b;
    box-shadow: 1px 5px 5px #9d9d9d;
