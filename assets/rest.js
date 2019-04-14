@@ -52,6 +52,7 @@ function showData(restaurant, reviews) {
 	document.querySelector('.cost-for-two').textContent = `Rs. ${restaurant.average_cost_for_two}`;
  	document.querySelector('.rest-address-info').textContent = restaurant.location.address;  
  	document.querySelector('.rest-photos-info').innerHTML = `<a href="${restaurant.photos_url}" target="_blank">Click here</a> to see photos.`;
+ 	document.querySelector('.rest-reviews-info').innerHTML = `<a href="${restaurant.menu_url}" target="_blank">Click here</a> to see menu.`;
 
  	const userReviews = document.querySelector('.user-reviews-info');
 

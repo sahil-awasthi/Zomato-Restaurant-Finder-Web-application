@@ -5,7 +5,7 @@
 
 a {
    text-decoration: none;
-}
+} 
 
 #header {
    border: 2px solid #9b9b9b;
@@ -13,7 +13,7 @@ a {
    padding-top: 25px;
    padding-bottom: 25px;
    position: fixed;
-   top: 0;
+   top: 0;     
    width: 100%;
    overflow: hidden;
    background-color: #fff;
@@ -145,6 +145,8 @@ hr {
    height: 200px;
    padding-left: 20px;
    overflow: hidden; 
+   font-family: 'Titillium Web', sans-serif;
+   font-size: 20px;
 
 }
 
@@ -176,23 +178,24 @@ hr {
 }
 
 .menu-bar{
-   height: 450px;
+   height: auto;
    font-family: 'Titillium Web', sans-serif;
    padding-left: 20px;
    padding-top: 20px;
+   padding-bottom: 20px;
    overflow: hidden;
    clear: both;
 }
 
 .menu-heading{
-   height: 450px;
+   height: auto;
    width: 137px;
    float: left;
    font-size: 20px; 
 }
 
 .menu-item-container{
-   height: 450px;
+   height: auto;
    width: auto;
    float: left;
    margin-left: 20px;
