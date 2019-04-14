@@ -161,6 +161,11 @@ hr {
    height: 108px;
 }
 
+.rest-reviews-info{
+   font-family: 'Titillium Web', sans-serif;
+   font-size: 20px;
+}
+
 .photos{
    background-color: #cccccc;
    float: left;
