@@ -1,5 +1,6 @@
 const restId = location.href.split('=')[1];
 const midSection = document.querySelector('#mid-section');
+const span = document.querySelectorAll('.update');
 
 const xhr = new XMLHttpRequest();
 
@@ -43,11 +44,21 @@ function getReviews(restaurant, showData) {
 
 function showData(restaurant, reviews) {
 	document.querySelector('.result-res-image').style.backgroundImage = `url(${restaurant.featured_image})`;
+	document.querySelector('.rest-name').textContent = restaurant.name;
 
-	const span = document.querySelectorAll('.update');
 	span[0].textContent = restaurant.user_rating.aggregate_rating;
 	span[1].textContent = restaurant.user_rating.votes;
 	span[2].textContent = `${reviews.reviews_count} reviews`;
+	span[3].onclick = () => like(restaurant.id);
+	span[4].onclick = () => unlike(restaurant.id);
+
+	if(getData().liked.indexOf(restaurant.id) !== -1) {
+		span[3].style.fontWeight = 'bold';
+	}
+
+	if(getData().unliked.indexOf(restaurant.id) !== -1) {
+		span[4].style.fontWeight = 'bold';
+	}
 
 	document.querySelector('.cost-for-two').textContent = `Rs. ${restaurant.average_cost_for_two}`;
  	document.querySelector('.rest-address-info').textContent = restaurant.location.address;  
@@ -58,7 +69,7 @@ function showData(restaurant, reviews) {
 
  	for(let review of reviews.user_reviews) {
  		userReviews.innerHTML += `
- 		<div class="user-bar">
+ 		<div class="user-bar">	
             <div class="user-image" style="background-image: url(${review.review.user.profile_image})"></div>
           </div>
             <div class="user-information-bar">
@@ -76,3 +87,64 @@ function showData(restaurant, reviews) {
             </div>`
  	}
 }
+
+function logData() {
+	console.log(getData());
+}
+
+function getData() {
+	return {
+		liked: localStorage.getItem('liked') ? localStorage.getItem('liked') : "",
+		unliked: localStorage.getItem('unliked') ? localStorage.getItem('unliked') : ""
+	};
+}
+
+function removeLike(id) {
+	let { liked } = getData();
+	liked = liked.split(',').filter(i => i !== id);
+	localStorage.setItem('liked', liked.join(','));
+	span[3].style.fontWeight = ''
+}
+
+function removeUnlike(id) {
+	let { unliked } = getData();
+	unliked = unliked.split(',').filter(i => i !== id);
+	localStorage.setItem('unliked', unliked.join(','));
+	span[4].style.fontWeight = ''
+}
+
+function like(id) {
+	const { liked, unliked } = getData();
+	if (!liked) {
+		return localStorage.setItem('liked', id);
+	} 
+	if (liked.indexOf(id) !== -1) {
+		return removeLike(id);
+	} 
+	if (unliked.indexOf(id) !== -1) {
+		removeUnlike(id);
+	} 
+	localStorage.setItem('liked', `${liked},${id}`);
+	span[3].style.fontWeight = 'bold';
+	span[4].style.fontWeight = '';
+	logData();
+}
+
+function unlike(id) {
+	const { liked, unliked } = getData();   
+	if (!unliked) {
+		return localStorage.setItem('unliked', id);
+	} 
+	if (unliked.indexOf(id) !== -1) {
+		return removeUnlike(id);
+	} 
+	if (liked.indexOf(id) !== -1) {
+		removeLike(id);
+	}
+	localStorage.setItem('unliked', `${unliked},${id}`);
+	span[4].style.fontWeight = 'bold';
+	span[3].style.fontWeight = '';
+	logData();
+}
+
+getData();
