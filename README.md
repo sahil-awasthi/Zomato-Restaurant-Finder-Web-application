@@ -1,7 +1,9 @@
 # Zomato-Restaurant-Finder-Web-application
 
+<b> Note: Use your own Zomato API Credentials by requesting an API key at "https://developers.zomato.com/api"</b>
+
 Built a Restaurant Finder Web application. <br>
 Used API to fetch restaurant information, from "https://developers.zomato.com/documentation"
 
-<b> website is active at: </b> <br>
+<b> Website is active at: </b> <br>
 https://withsahil.github.io/Zomato-Restaurant-Finder-Web-application/
